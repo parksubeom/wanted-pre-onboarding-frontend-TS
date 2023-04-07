@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-export default function Login({ setIsLogin, setSingup }) {
+export default function Login({ setIstodo, setSingup }) {
   const [loginInfo, setLoginInfo] = useState({
     userId: '',
     password: '',
   });
   const [checkedKeepLogin, setCheckedKeepLogin] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-
 
   /**입력값 상태값으로 저장하는 함수 */
   const handleInputValue = (key) => (e) => {
@@ -33,23 +32,22 @@ export default function Login({ setIsLogin, setSingup }) {
       })
       .then((res) => res.json())
       .then((res) => {
+        if (res.access_token !== undefined) {
         window.localStorage.setItem('access_token', res.access_token)
         setErrorMessage("")
-
-      })
-      .catch((err) => {
-        console.log(err)
-        if (err.response.status === 404) {
+        setIstodo(true)
+        }else if(res.statusCode === 404){
           setErrorMessage("로그인에 실패했습니다.")
         }
-
-      });
+      })
+    
   };
   /**회원가입 이동 함수 */
   const signupBtnHandler = () => {
     setSingup(true)
+    
   }
-
+ 
 
   return (
     <div className='container'>
@@ -79,12 +77,6 @@ export default function Login({ setIsLogin, setSingup }) {
               {' 로그인 상태 유지하기'}
             </label>
           </div>
-          <button type='submit' data-testid="signin-button" onClick={loginRequestHandler}>
-            LOGIN
-          </button>
-          <button type='button' data-testid="signup-button" onClick={signupBtnHandler} >
-            SIGNUP
-          </button>
           {errorMessage ? (
             <div id='alert-message' data-testid='alert-message'>
               {errorMessage}
@@ -92,6 +84,13 @@ export default function Login({ setIsLogin, setSingup }) {
           ) : (
             ''
           )}
+          <button type='submit' data-testid="signin-button" onClick={loginRequestHandler}>
+            LOGIN
+          </button>
+          <button type='button' data-testid="signup-button" onClick={signupBtnHandler} >
+            SIGNUP
+          </button>
+         
         </form>
       </div>
     </div>

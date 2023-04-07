@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-export default function Signup({setSingup}) {
+export default function Signup({setIsLogin, setSingup}) {
+  const [errorMessage, setErrorMessage] = useState('');
   const [loginInfo, setLoginInfo] = useState({
     password: '',
     email: '',
@@ -13,9 +14,10 @@ export default function Signup({setSingup}) {
   
   const signupHandler = () => {
     if (loginInfo.password.length < 8 || !loginInfo.email.includes("@")) {
-     return alert("정보를 모두 입력해주십쇼.")
+      setErrorMessage('비밀번호는 8자리 이상, 이메일은 @ 를 포함시켜주시길 바랍니다.');
     } else {
       setSingup(false)
+      setIsLogin(true)
       return fetch
      ("https://www.pre-onboarding-selection-task.shop/auth/signup", {
       method: "POST",
@@ -25,12 +27,11 @@ export default function Signup({setSingup}) {
       body: JSON.stringify(loginInfo)
     })
       .then((res) => {
+      if(res.status === 201){
         alert("회원가입에 성공하셨습니다.")
-      })
-      .catch((err) => {
-        if (err.response.status === 400) {
-          alert("회원가입에 실패했습니다.")
-        }
+      }else{
+        alert("회원가입에 실패하셨습니다..")
+      }
       })
     }
     }
@@ -60,10 +61,17 @@ export default function Signup({setSingup}) {
               data-testid='password-input'
               onChange={handleInputValue('password')}
             />
+            {errorMessage ? (
+            <div id='alert-message' data-testid='alert-message'>
+              {errorMessage}
+            </div>
+          ) : (
+            ''
+          )}
             
         
           </div>
-          <button type='submit'onClick={signupHandler}>
+          <button type='submit'onClick={signupHandler} disabled="">
             SIGNUP
           </button>
         </form>
