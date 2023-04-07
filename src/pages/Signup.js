@@ -12,25 +12,25 @@ export default function Signup({setSingup}) {
   };
   
   const signupHandler = () => {
-    if (!loginInfo.password || !loginInfo.email) {
+    if (loginInfo.password.length < 8 || !loginInfo.email.includes("@")) {
      return alert("정보를 모두 입력해주십쇼.")
     } else {
       setSingup(false)
-      return axios
-      .post("https://www.pre-onboarding-selection-task.shop/auth/signup", {
-        data: {
-          email:loginInfo.email,
-          password:loginInfo.password
-        }
-       },{
-        headers : {
-          'Content-Type': 'application/json'
-        }
-       }, {
-
-      })
+      return fetch
+     ("https://www.pre-onboarding-selection-task.shop/auth/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loginInfo)
+    })
       .then((res) => {
         alert("회원가입에 성공하셨습니다.")
+      })
+      .catch((err) => {
+        if (err.response.status === 400) {
+          alert("회원가입에 실패했습니다.")
+        }
       })
     }
     }
@@ -63,7 +63,7 @@ export default function Signup({setSingup}) {
             
         
           </div>
-          <button type='submit'onClick={signupHandler} >
+          <button type='submit'onClick={signupHandler}>
             SIGNUP
           </button>
         </form>

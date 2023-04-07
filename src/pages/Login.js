@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-export default function Login({ setUserInfo, setIsLogin,setSingup }) {
+export default function Login({ setIsLogin, setSingup }) {
   const [loginInfo, setLoginInfo] = useState({
     userId: '',
     password: '',
   });
   const [checkedKeepLogin, setCheckedKeepLogin] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
+
+  /**입력값 상태값으로 저장하는 함수 */
   const handleInputValue = (key) => (e) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
   };
+  /**로그인 요청 함수 */
   const loginRequestHandler = () => {
     const { email, password } = loginInfo;
     if (!email || !password) {
@@ -19,22 +23,29 @@ export default function Login({ setUserInfo, setIsLogin,setSingup }) {
     } else {
       setErrorMessage('');
     }
-    return axios
-      .post("https://www.pre-onboarding-selection-task.shop/auth/signin", { loginInfo, checkedKeepLogin })
+    return fetch
+      ("https://www.pre-onboarding-selection-task.shop/auth/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginInfo)
+      })
+      .then((res) => res.json())
       .then((res) => {
-        console.log(res.data)
-        setUserInfo(res.data)
-        setIsLogin(true)
+        window.localStorage.setItem('access_token', res.access_token)
         setErrorMessage("")
+
       })
       .catch((err) => {
-        if (err.response.status === 401) {
+        console.log(err)
+        if (err.response.status === 404) {
           setErrorMessage("로그인에 실패했습니다.")
         }
 
       });
   };
-
+  /**회원가입 이동 함수 */
   const signupBtnHandler = () => {
     setSingup(true)
   }
@@ -53,10 +64,10 @@ export default function Login({ setUserInfo, setIsLogin,setSingup }) {
         <h1>WANTED AUTH</h1>
         <form onSubmit={(e) => e.preventDefault()}>
           <div className='input-field'>
-            <span>e-mail</span>
-            <input type='text' 
-            data-testid='email-input' 
-            onChange={handleInputValue('email')} />
+            <span>E-mail</span>
+            <input type='text'
+              data-testid='email-input'
+              onChange={handleInputValue('email')} />
             <span>Password</span>
             <input
               type='password'

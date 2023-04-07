@@ -1,20 +1,20 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Redirect } from 'react-router-dom';
 import Login from './pages/Login';
 import TodoList from './pages/TodoList';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import Signup from './pages/Signup';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 
-// 모든 요청에 withCredentials가 true로 설정됩니다.
+
+// 모든 요청에 withCredentials가 true로 설정.
 axios.defaults.withCredentials = true;
 
 function App() {
-  const [isLogin, setIsLogin] = useState(false);
   const [issingup, setSingup] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
-
+  const token = localStorage.getItem("access_token");
 
   return (
     <BrowserRouter>
@@ -23,11 +23,16 @@ function App() {
           <Route
             path='/'
             element={
-              isLogin ? (
-                <TodoList userInfo={userInfo} setIsLogin={setIsLogin} setUserInfo={setUserInfo} />) 
-                : !issingup?(<Login setSingup={setSingup} setUserInfo={setUserInfo} setIsLogin={setIsLogin} />) : (<Signup  setSingup={setSingup}/>)
+              token ? (
+                <TodoList userInfo={userInfo} setUserInfo={setUserInfo} />) 
+                : !issingup?(<Login setSingup={setSingup} setUserInfo={setUserInfo}  />) 
+                : (<Signup  setSingup={setSingup}/>)
             }
           />
+           <Route path="/signin" element ={token? <TodoList userInfo={userInfo}  setUserInfo={setUserInfo} /> : <Login setSingup={setSingup} setUserInfo={setUserInfo}  />}/>
+           <Route path="/signup" element ={token? <TodoList userInfo={userInfo}  setUserInfo={setUserInfo} /> :<Signup  setSingup={setSingup}/>}/>
+           <Route path="/todo" element ={!token ? <Login setSingup={setSingup} setUserInfo={setUserInfo}  /> : <TodoList userInfo={userInfo}  setUserInfo={setUserInfo} />}/>
+
         </Routes>
       </div>
     </BrowserRouter>
