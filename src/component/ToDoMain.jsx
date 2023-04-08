@@ -24,7 +24,7 @@ const ToDoHeaderBlock = styled.header`
   width: 500px;
   height: 130px;
   position: relative;
-  background: rgba( 200, 260, 200, 0.65 );
+  background: #f0f6d2;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   margin: 0 auto;
