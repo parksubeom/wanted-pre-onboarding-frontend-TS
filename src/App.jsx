@@ -32,7 +32,7 @@ function App() {
           />
            <Route path="/signin" element ={token? <Navigate to="/todo"/>:issingup ? <Navigate to="/signup"/>:<Login setSingup={setSingup} setUserInfo={setUserInfo} setIstodo={setIstodo} />}/>
            <Route path="/signup" element ={token? <Navigate to="/todo"/>:isLogin ? <Navigate to="/signin"/> :<Signup setSingup={setSingup} setIsLogin={setIsLogin} />}/>
-           <Route path="/todo" element ={!token ?  <Navigate to="/signin"/>:<TodoList userInfo={userInfo}  setUserInfo={setUserInfo} />}/> :
+           <Route path="/todo" element ={!token ?  <Navigate to="/signin"/>:<TodoList userInfo={userInfo}  setUserInfo={setUserInfo} token={token} />}/> :
 
         </Routes>
       </div>
