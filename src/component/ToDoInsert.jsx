@@ -36,7 +36,7 @@ function ToDoInsert({ todos, setTodos }) {
         if (inputvalue.length > 0) {
             let copy = [...todos, { id: todos[todos.length - 1].id + 1, todo: inputvalue, isCompleted: false, userId: todos[todos.length - 1].id + 1 }]
             fetch
-                ("https://www.pre-onboarding-selection-task.shop/auth/todos", {
+                ("https://www.pre-onboarding-selection-task.shop/todos", {
                     method: "POST",
                     headers: {
                         "Authorization": `Bearer ${token}`,
@@ -49,6 +49,7 @@ function ToDoInsert({ todos, setTodos }) {
                         setTodos(res)
                     }
                 })
+                setInputvalue('')
         };
 
     }

@@ -24,7 +24,7 @@ export default function TodoList({token}) {
  console.log(token)
   useEffect(() => { 
     fetch
-    ("https://www.pre-onboarding-selection-task.shop/auth/todos", {
+    ("https://www.pre-onboarding-selection-task.shop/todos", {
      method: "GET",
      headers: {
       "Authorization": `Bearer ${token}`,
@@ -32,7 +32,7 @@ export default function TodoList({token}) {
    })
      .then((res) => {
      if(res.status === 200){
-       setTodos(res)
+       setTodos([...todos,res])
      }
      })
   },[])
