@@ -1,5 +1,4 @@
 import React from 'react';
-import ToDoInsert from './ToDoInsert';
 import styled from 'styled-components';
 import ToDoList from './ToDoList';
 
@@ -25,7 +24,7 @@ const ToDoHeaderBlock = styled.header`
   width: 500px;
   height: 130px;
   position: relative;
-  background: rgba( 248, 244, 204, 0.75 );
+  background: rgba( 200, 260, 200, 0.65 );
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   margin: 0 auto;

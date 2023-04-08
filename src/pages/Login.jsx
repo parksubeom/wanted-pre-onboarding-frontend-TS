@@ -39,6 +39,10 @@ export default function Login({ setIstodo, setSingup }) {
         }else if(res.statusCode === 404){
           setErrorMessage("로그인에 실패했습니다.")
         }
+        /**일단 가이드라인 따라가자 */
+        /*if(checkedKeepLogin){
+          window.localStorage.setItem('access_token', res.access_token)
+        }*/
       })
     
   };
@@ -59,7 +63,8 @@ export default function Login({ setIstodo, setSingup }) {
         </span>
       </div>
       <div className='right-box'>
-        <h1>WANTED AUTH</h1>
+        <img src='https://live.staticflickr.com/65535/52249182884_80a9c34075_o.png'></img>
+        <h2>AUTH</h2>
         <form onSubmit={(e) => e.preventDefault()}>
           <div className='input-field'>
             <span>E-mail</span>
@@ -72,6 +77,7 @@ export default function Login({ setIstodo, setSingup }) {
               data-testid='password-input'
               onChange={handleInputValue('password')}
             />
+            {/**일단 가이드라인을 준수하기위해 로직은 넣지않았습니다.*/}
             <label className='checkbox-container'>
               <input type='checkbox' onChange={() => setCheckedKeepLogin(!checkedKeepLogin)} />
               {' 로그인 상태 유지하기'}

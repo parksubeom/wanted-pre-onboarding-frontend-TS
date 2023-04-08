@@ -1,4 +1,3 @@
-import React, {  useState, useRef, useEffect, memo  } from 'react';
 import ToDoInsert from './ToDoInsert';
 import ToDoListItem from './ToDoListItem';
 import styled from 'styled-components';
@@ -13,12 +12,12 @@ const ToDoListul = styled.ul`
 `
 
 
-function ToDoList ({todos,setTodos,setUpdateModal,setTodoId}) {
+function ToDoList ({todos,setTodos,setUpdateModal}) {
     return(
         <ToDoListul>
             <ToDoInsert todos={todos} setTodos={setTodos} />
             {todos.map((list) => (
-                <ToDoListItem list={list} key={list.id} todos={todos} setTodos={setTodos} setUpdateModal={setUpdateModal}  setTodoId ={ setTodoId} />))}
+                <ToDoListItem list={list} key={list.id} todos={todos} setTodos={setTodos} setUpdateModal={setUpdateModal} />))}
         </ToDoListul>
     );
 }

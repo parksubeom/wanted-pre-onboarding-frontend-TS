@@ -11,7 +11,7 @@ input {
   padding: 3px;
   border-radius: 3px;
   outline: none;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 0px 1px;
 }
 
 input:focus{
@@ -32,7 +32,7 @@ input:focus{
   overflow:hidden;
   border-radius: 8px;
   box-shadow: rgba(85, 224, 255, 0.7) 0px 48px 100px 0px;
-  background-color: #eee;
+  background-color: #ffffff;
 }
 .right-box {
   display: inline-block;
@@ -43,6 +43,7 @@ input:focus{
   text-align: center;
 }
 .left-box {
+  
   width: 19rem;
   height: 35rem;
   float: left;
@@ -63,7 +64,6 @@ input:focus{
 .right-box > h1{
   text-align: center;
   margin: 0 auto;
-  margin-top: 2rem;
   font-weight: 900;
   width: min-content;
   line-height: 100%;
@@ -81,6 +81,11 @@ h3{
   margin: 0 auto;
   margin-top: 3rem;
   width:12rem;
+}
+img {
+  margin-top: 20px;
+  width: 100px;
+  height: 80px
 }
 .input-field > span {
   padding: 0.2rem;
@@ -117,7 +122,8 @@ button {
 }
 
 button:hover {
-  background-color: #4000c7;
+  background-color: #1cf4ed;
+  color: rgb(51, 45, 45);
 }
 
 #alert-message {

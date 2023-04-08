@@ -9,15 +9,18 @@ const ToDoInputtBlock = styled.input`
 
 const ToDoBtn = styled.button`
     cursor: pointer;
-    width: 20%;
+    width: 100px;
     height: 50px;
     border: 2px solid black; 
+    margin-top: 0px;
+
 `
 const ToDoInputbox = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    width: 550px;
     border-radius: 30px;
 `
 
@@ -34,22 +37,21 @@ function ToDoInsert({ todos, setTodos }) {
         e.preventDefault();
         console.log("실행")
         if (inputvalue.length > 0) {
-            let copy = [...todos, { id: todos[todos.length - 1].id + 1, todo: inputvalue, isCompleted: false, userId: todos[todos.length - 1].id + 1 }]
-            fetch
+            let newTodo = { id: todos[todos.length - 1].id + 1, todo: inputvalue, isCompleted: false, userId: todos[todos.length - 1].id + 1 }
+            setInputvalue('')
+            return fetch
                 ("https://www.pre-onboarding-selection-task.shop/todos", {
                     method: "POST",
                     headers: {
                         "Authorization": `Bearer ${token}`,
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify(copy)
+                    body: JSON.stringify(newTodo)
                 })
+                .then((res) => res.json())
                 .then((res) => {
-                    if (res.status === 201) {
-                        setTodos(res)
-                    }
+                    setTodos([...todos, res])
                 })
-                setInputvalue('')
         };
 
     }

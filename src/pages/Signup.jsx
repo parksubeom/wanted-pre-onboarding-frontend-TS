@@ -90,7 +90,8 @@ export default function Signup({setIsLogin, setSingup}) {
         </span>
       </div>
       <div className='right-box'>
-      <h1>WANTED SIGN UP</h1>
+      <img src='https://live.staticflickr.com/65535/52249182884_80a9c34075_o.png'></img>
+      <h2>SIGN UP</h2>
         <form onSubmit={(e) => e.preventDefault()}>
           <div className='input-field'>
 
