@@ -62,7 +62,7 @@ function ToDoMain({ todos, setTodos, modal, setModal, setUpdateModal, updateModa
         <h3>{week}요일</h3>
         <h4>TO-DO-LIST {todos.length}개</h4>
       </ToDoHeaderBlock>
-      <ToDoList todos={todos} setTodos={setTodos} setModal={setModal} modal={modal} setUpdateModal={setUpdateModal} updateModal={updateModal}  setTodoId={ setTodoId} />
+      <ToDoList todos={todos} setTodos={setTodos} setModal={setModal} modal={modal} setUpdateModal={setUpdateModal} updateModal={updateModal}  setTodoId={setTodoId}/>
     </ToDoMainBlock>
   );
 }

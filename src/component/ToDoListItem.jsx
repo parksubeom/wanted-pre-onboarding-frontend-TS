@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React, { useState} from 'react';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import ToDoModyfy from './ToDoModify';
 
 const ToDodivBlock = styled.div`
@@ -94,34 +95,38 @@ cursor: pointer;
 font-size:12px;
 `
 
-function ToDoListItem({ list, todos, setTodos }) {
+function ToDoListItem({ list, todos, setTodos}) {
     const [isModify, setIsModify] = useState(false)
     const { id, todo, isCompleted } = list;
     const googleulr = `https://www.google.com/search?q=${todo}&sxsrf=AJOqlzWmKMltXpsKhW5LXn5NeZhVRSGEUQ%3A1678406201764&source=hp&ei=OXIKZKm-LIP5hwPdlo2oAw&iflsig=AK50M_UAAAAAZAqASUnEuWXCverjO0fsiwQN9qHNa017&ved=0ahUKEwjpvsWrhtD9AhWD_GEKHV1LAzUQ4dUDCAo&uact=5&oq=%EB%A6%AC%EB%8D%95%EC%8A%A4&gs_lcp=Cgdnd3Mtd2l6EAMyBAgjECcyBAgjECcyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDoHCCMQ6gIQJzoRCC4QgAQQsQMQgwEQxwEQ0QM6CwgAEIAEELEDEIMBOgsILhCABBCxAxDUAjoKCC4QgAQQ1AIQCjoECAAQQzoECC4QQzoKCC4QxwEQ0QMQQzoQCAAQgAQQFBCHAhCxAxCDAToKCAAQgAQQFBCHAjoOCC4QgAQQsQMQgwEQ1AI6CwguEIAEELEDEIMBULICWKoUYOgUaApwAHgCgAF2iAHZCpIBBDEuMTKYAQCgAQGwAQo&sclient=gws-wiz`
     const token = localStorage.getItem("access_token");
+    const navigate = useNavigate()
 
 
-
-    const deleteTodo = (e) => {
-         fetch
-            (`https://www.pre-onboarding-selection-task.shop/todos/${id}`, {
-                method: "DELETE",
-                headers: { "Authorization": `Bearer ${token}` }
-            })
-            setTodos([...todos])
+    const deleteTodo = () => {
+       fetch(`https://www.pre-onboarding-selection-task.shop/todos/${id}`, {
+            method: "DELETE",
+            headers: { "Authorization": `Bearer ${token}`}
+        })
+        .then(() =>{
+            console.log("여기까지내려왔어")
+            navigate(0)
+        })
+        
+        
     }
-    
+
     const successTodo = () => {
         let copy = [...todos]
         for (let el of copy) {
             if (el.id === id) {
-                el.isCompleted = !el.isCompleted
+                el.isCompleted =!el.isCompleted    
             }
         }
         setTodos(copy)
+
     }
     const modifyTodo = () => {
-        console.log("함수실행")
         setIsModify(!isModify)
     }
     return (

@@ -27,7 +27,6 @@ export default function Signup({setIsLogin, setSingup}) {
   const [isPassword, setIsPassword] = useState(false)
 
   /**이메일, 패스워드 에러메시지 */
-  const [errorMessage, setErrorMessage] = useState('');
   const [emailMessage, setEmailMessage] = useState('');
   const [passwordMessage, setPasswordMessage] = useState('');
   

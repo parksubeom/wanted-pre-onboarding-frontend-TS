@@ -13,22 +13,27 @@ export default function TodoList({ token }) {
     userId: 1,
     id: 1,
     isCompleted: false,
-  
+
   }
   ])
-  useEffect(() => {
-    fetch
-      ("https://www.pre-onboarding-selection-task.shop/todos", {
-        method: "GET",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        }
-      })
+  const getFunction = () => {
+    fetch("https://www.pre-onboarding-selection-task.shop/todos", {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      }
+    })
       .then((res) => res.json())
       .then((res) => {
-          setTodos([...todos,...res])
+        setTodos([...todos, ...res])
       })
+  }
+
+  useEffect(() => {
+    getFunction()
   }, [])
+
+
 
 
 

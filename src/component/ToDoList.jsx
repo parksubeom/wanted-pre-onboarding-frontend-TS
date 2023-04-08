@@ -17,7 +17,7 @@ function ToDoList ({todos,setTodos,setUpdateModal}) {
         <ToDoListul>
             <ToDoInsert todos={todos} setTodos={setTodos} />
             {todos.map((list) => (
-                <ToDoListItem list={list} key={list.id} todos={todos} setTodos={setTodos} setUpdateModal={setUpdateModal} />))}
+                <ToDoListItem list={list} key={list.id} todos={todos} setTodos={setTodos} setUpdateModal={setUpdateModal}/>))}
         </ToDoListul>
     );
 }
