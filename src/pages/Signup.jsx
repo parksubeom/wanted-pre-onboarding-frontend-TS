@@ -36,35 +36,37 @@ export default function Signup({ setIsLogin, setSingup }) {
     email: '',
 
   });
+  /**이메일 유효성검사 함수 */
   const handleEmailValue = (key) => (e) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
     if (!e.target.value.includes("@") && e.target.value.length > 0) {
       setEmailMessage('이메일 형식에는 @를 포함해주세요.')
       setIsEmail(false)
-    } else if (e.target.value.includes("@")) {
+    }else if(e.target.value.length === 0){
+      setEmailMessage('')
+    }
+    if (e.target.value.includes("@")) {
       setEmailMessage('')
       setIsEmail(true)
     }
   };
-
+  /**패스워드 유효성검사 함수 */
   const handlePasswordValue = (key) => (e) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
     if (e.target.value.length < 8 && e.target.value.length > 0) {
       setPasswordMessage('비밀번호는 8자리 이상 입력해주세요.')
       setIsPassword(false)
-    } else if (e.target.value.length > 8) {
+    }else if(e.target.value.length === 0){
+      setPasswordMessage('')
+    }
+    if (e.target.value.length >= 8) {
       setPasswordMessage('')
       setIsPassword(true)
     }
   };
 
   const signupHandler = () => {
-    if (!isEmail) {
-      return alert("E-mail을 올바르게 입력바랍니다.")
-    }
-    if (!isPassword) {
-      return alert("Password를 올바르게 입력바랍니다.")
-    }
+    /*위에서 유효성 검사를 거치고 넘어오겠지만, 회원가입은 방어적으로 로직을 짜는게 좋다. */
     if (isPassword && isEmail) {
       setSingup(false)
       setIsLogin(true)
@@ -125,11 +127,14 @@ export default function Signup({ setIsLogin, setSingup }) {
                 {passwordMessage}
               </div>) : ('')}
           </div>
-
+          {/*이메일과 비밀번호가 유효성 검사를 통과하지 못한다면 button에 disabled 속성을 부여*/}    
           {!isEmail || !isPassword ?
             <Disablebtn disabled={!(isEmail && isPassword)}>SIGNUP</Disablebtn>
             :
-            <button data-testid="signup-button" type='submit' onClick={signupHandler} disabled={!(isEmail && isPassword)}>
+            <button 
+            data-testid="signup-button"
+            type='submit' 
+            onClick={signupHandler}>
               SIGNUP
             </button>}
 
