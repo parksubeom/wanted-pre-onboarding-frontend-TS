@@ -38,7 +38,6 @@ export default function Login({ setToken}) {
           setErrorMessage("로그인에 실패했습니다.")
         }
       })
-    navigate('/todo')
   };
   /**회원가입 이동 함수 */
   const signupBtnHandler = () => {

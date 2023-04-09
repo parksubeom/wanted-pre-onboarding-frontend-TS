@@ -141,8 +141,8 @@ button {
 }
 
 button:hover {
-  background-color: #1cf4ed;
-  color: rgb(51, 45, 45);
+  background-color: #f2fcfc;
+  color: rgb(34, 31, 31);
 }
 
 #alert-message {
