@@ -17,14 +17,7 @@ const ToDocontainer = styled.div`
 
 export default function TodoList({ token }) {
   const [updateModal, setUpdateModal] = useState(false)
-  const [todos, setTodos] = useState([{
-    todo: "선별과제 최선을 다하기",
-    userId: 1,
-    id: 1,
-    isCompleted: false,
-
-  }
-  ])
+  const [todos, setTodos] = useState([])
   const getFunction = () => {
     fetch("https://www.pre-onboarding-selection-task.shop/todos", {
       method: "GET",
@@ -34,7 +27,7 @@ export default function TodoList({ token }) {
     })
       .then((res) => res.json())
       .then((res) => {
-        setTodos([...todos, ...res])
+        setTodos(res)
       })
   }
 
