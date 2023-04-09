@@ -6,7 +6,7 @@
 
 - **배포링크 : https://parksubeom.github.io/wanted-pre-onboarding-frontend**
 - <img src = "https://user-images.githubusercontent.com/104641096/230758070-df4981c0-609e-488b-8dd0-bfc93f28940a.gif" width = "300" height = "400"/>
-- <img src = "https://user-images.githubusercontent.com/104641096/230767388-10f7f981-0c62-44f8-86cc-3a2b8ef678f7.gif" width = "300" height = "400"/>
+<img src = "https://user-images.githubusercontent.com/104641096/230767388-10f7f981-0c62-44f8-86cc-3a2b8ef678f7.gif" width = "300" height = "400"/>
 
 
 ### 🛠️ 사용 라이브러리 및 기술
