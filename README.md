@@ -5,6 +5,7 @@
 ## 💡 프로젝트 데모 영상
 
 - **배포링크 : https://parksubeom.github.io/wanted-pre-onboarding-frontend**
+https://user-images.githubusercontent.com/104641096/230757480-13bd538d-9592-41a8-b1de-5f5699a466bf.gif
 
 ### `npm start`
 
