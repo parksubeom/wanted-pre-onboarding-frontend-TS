@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-export default function Login({ setIstodo, setSingup }) {
+export default function Login({ setToken }) {
+  const navigate = useNavigate()
   const [loginInfo, setLoginInfo] = useState({
     userId: '',
     password: '',
@@ -22,7 +23,7 @@ export default function Login({ setIstodo, setSingup }) {
     } else {
       setErrorMessage('');
     }
-    return fetch
+     fetch
       ("https://www.pre-onboarding-selection-task.shop/auth/signin", {
         method: "POST",
         headers: {
@@ -34,8 +35,7 @@ export default function Login({ setIstodo, setSingup }) {
       .then((res) => {
         if (res.access_token !== undefined) {
         window.localStorage.setItem('access_token', res.access_token)
-        setErrorMessage("")
-        setIstodo(true)
+        setToken(localStorage.getItem("access_token"))
         }else if(res.statusCode === 404){
           setErrorMessage("로그인에 실패했습니다.")
         }
@@ -44,12 +44,11 @@ export default function Login({ setIstodo, setSingup }) {
           window.localStorage.setItem('access_token', res.access_token)
         }*/
       })
-    
+    return navigate('/todo')
   };
   /**회원가입 이동 함수 */
   const signupBtnHandler = () => {
-    setSingup(true)
-    
+    navigate('/signup')
   }
  
 

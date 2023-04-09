@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 /**유효성검사 통과 못할 시 버튼 비활성화 */
@@ -21,7 +22,8 @@ const Disablebtn = styled.button`
   }
 `
 
-export default function Signup({ setIsLogin, setSingup }) {
+export default function Signup() {
+  const navigate = useNavigate()
   /**이메일, 패스워드 확인 */
   const [isEmail, setIsEmail] = useState(false)
   const [isPassword, setIsPassword] = useState(false)
@@ -79,8 +81,7 @@ export default function Signup({ setIsLogin, setSingup }) {
         .then((res) => {
           if (res.status === 201) {
             alert("회원가입에 성공하셨습니다.")
-            setSingup(false)
-            setIsLogin(true)
+            navigate('/signin')
           } else {
             alert("동일한 이메일이 이미 존재합니다.")
           }

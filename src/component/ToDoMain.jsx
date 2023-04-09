@@ -24,7 +24,7 @@ const ToDoHeaderBlock = styled.header`
   width: 500px;
   height: 130px;
   position: relative;
-  background: #f0f6d2;
+  background: rgba(33, 14, 237, 0.6);
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   margin: 0 auto;
@@ -39,13 +39,13 @@ const ToDoHeaderBlock = styled.header`
   
   }
   h3 {
-    color: #4e4e51;
+    color: #dddde4;
     text-align: left;
     margin-left: 10px;
     margin-bottom: 20px;
   }
   h4 {
-    color: #1c1919;
+    color: #dddde4;
     text-align: left;
     margin-left: 10px;
   }

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import React, { useState} from 'react';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import ToDoModyfy from './ToDoModify';
 
 const ToDodivBlock = styled.div`
@@ -100,7 +99,6 @@ function ToDoListItem({ list, todos, setTodos}) {
     const { id, todo, isCompleted } = list;
     const googleulr = `https://www.google.com/search?q=${todo}&sxsrf=AJOqlzWmKMltXpsKhW5LXn5NeZhVRSGEUQ%3A1678406201764&source=hp&ei=OXIKZKm-LIP5hwPdlo2oAw&iflsig=AK50M_UAAAAAZAqASUnEuWXCverjO0fsiwQN9qHNa017&ved=0ahUKEwjpvsWrhtD9AhWD_GEKHV1LAzUQ4dUDCAo&uact=5&oq=%EB%A6%AC%EB%8D%95%EC%8A%A4&gs_lcp=Cgdnd3Mtd2l6EAMyBAgjECcyBAgjECcyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDoHCCMQ6gIQJzoRCC4QgAQQsQMQgwEQxwEQ0QM6CwgAEIAEELEDEIMBOgsILhCABBCxAxDUAjoKCC4QgAQQ1AIQCjoECAAQQzoECC4QQzoKCC4QxwEQ0QMQQzoQCAAQgAQQFBCHAhCxAxCDAToKCAAQgAQQFBCHAjoOCC4QgAQQsQMQgwEQ1AI6CwguEIAEELEDEIMBULICWKoUYOgUaApwAHgCgAF2iAHZCpIBBDEuMTKYAQCgAQGwAQo&sclient=gws-wiz`
     const token = localStorage.getItem("access_token");
-    const navigate = useNavigate()
 
 
     const deleteTodo = () => {
@@ -134,7 +132,7 @@ function ToDoListItem({ list, todos, setTodos}) {
             {!isCompleted ? <ToDoliBlock>
                 <ToDotodoBlock>{isModify ? <ToDoModyfy setTodos={setIsModify} todos={todos} todo={todo} id={id} isCompleted={isCompleted} setIsModify={setIsModify} /> : <a href={googleulr} target="_blank">{todo}</a>}</ToDotodoBlock>
                 <div className="Btnbox">
-                    <ToDoCheckBox type="checkbox" checked={isCompleted} onClick={successTodo} />
+                    <ToDoCheckBox type="checkbox" checked={isCompleted} onChange={successTodo} />
                     <ToDoDeleteBtn data-testid="delete-button" onClick={deleteTodo}>🗑️</ToDoDeleteBtn>
                     <ToDoSuccsessBtn data-testid="modify-button" onClick={modifyTodo}>✏️</ToDoSuccsessBtn>
                 </div>
@@ -143,7 +141,7 @@ function ToDoListItem({ list, todos, setTodos}) {
                 <ToDoSuccessBlock>
                     <ToDoSuccessspan>{todo}</ToDoSuccessspan>
                     <div className="Btnbox">
-                        <ToDoCheckBox type="checkbox" checked={isCompleted} onClick={successTodo} />
+                        <ToDoCheckBox type="checkbox" checked={isCompleted} onChange={successTodo} />
                     </div>
                 </ToDoSuccessBlock>}
         </ToDodivBlock>
