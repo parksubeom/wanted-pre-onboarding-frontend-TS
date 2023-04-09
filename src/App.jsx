@@ -1,23 +1,53 @@
 import './App.css';
 import { Routes, Route, Navigate,HashRouter } from 'react-router-dom';
+import styled from 'styled-components';
 import Login from './pages/Login';
 import TodoList from './pages/TodoList';
 import Signup from './pages/Signup';
 import React, { useState } from 'react';
 import axios from 'axios';
 
-
-
-// 모든 요청에 withCredentials가 true로 설정.
+/**모든 요청에 withCredentials이 true로 설정.*/
 axios.defaults.withCredentials = true;
+
+const LogoutBtn = styled.button`
+  position:  absolute;
+  top: 0;
+  right: 0;
+  margin: 5rem 5rem;
+  border: 0px;
+  background-color: #0545f7; 
+  color: white;
+  width: 12rem;
+  height: 40px;
+  border-radius: 6px;
+  cursor: pointer;
+  outline: none;
+  font-size: 1rem;
+  letter-spacing:5px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  &hober {
+    background-color: #1cf4ed;
+  color: rgb(51, 45, 45);
+  }
+`
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("access_token")) 
   const [userInfo, setUserInfo] = useState(null);
-  //const token = localStorage.getItem("access_token");
+
+  /**로그아웃 함수(토큰을 스토리지에서 비워준다.)*/
+const logout = () => {
+  window.localStorage.clear();
+  setToken(null)
+}
+
+
+
   return (
     <HashRouter>
       <div className='main'>
+        {token !== null? <LogoutBtn onClick={logout}>로그아웃</LogoutBtn> : null}
         <Routes>
           {/* localhost:3000 으로 접속한 로그인이 되어있다면(토큰이있다면) /todo로, 토큰이 없다면 /sign 으로 보낸다.  */}
           <Route path='/' element={
