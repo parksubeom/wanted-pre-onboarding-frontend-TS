@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate,HashRouter } from 'react-router-dom';
 import Login from './pages/Login';
 import TodoList from './pages/TodoList';
 import Signup from './pages/Signup';
@@ -16,7 +16,7 @@ function App() {
   const [userInfo, setUserInfo] = useState(null);
   //const token = localStorage.getItem("access_token");
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <div className='main'>
         <Routes>
           {/* localhost:3000 으로 접속한 로그인이 되어있다면(토큰이있다면) /todo로, 토큰이 없다면 /sign 으로 보낸다.  */}
