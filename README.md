@@ -28,4 +28,5 @@ npm install & npm start
 ### ⚠️ 커밋 컨벤션
 - feat : 새로운 기능추가
 - fix : 기존 기능 수정
+- design : 디자인 
 
