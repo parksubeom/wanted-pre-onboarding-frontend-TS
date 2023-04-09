@@ -2,9 +2,9 @@
 본 프로젝트는 원티드 프리온보딩 프론트엔드 과정 선발 과제 수행을 위해 진행되었습니다.
 
 
-## Available Scripts
+## 💡 프로젝트 데모 영상
 
-In the project directory, you can run:
+- **배포링크 : https://parksubeom.github.io/wanted-pre-onboarding-frontend**
 
 ### `npm start`
 
