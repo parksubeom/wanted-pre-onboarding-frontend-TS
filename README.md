@@ -5,7 +5,7 @@
 ## 💡 프로젝트 데모 영상
 
 - **배포링크 : https://parksubeom.github.io/wanted-pre-onboarding-frontend**
-![로그인 회원가입 시연](https://user-images.githubusercontent.com/104641096/230757778-61a83fc1-09f4-495b-bf11-9990a2fc4e0a.gif)
+
 
 
 
