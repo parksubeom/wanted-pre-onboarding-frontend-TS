@@ -108,41 +108,42 @@ function ToDoListItem({ list, todos, setTodos}) {
             method: "DELETE",
             headers: { "Authorization": `Bearer ${token}`}
         })
-        .then(() =>{
-            console.log("여기까지내려왔어")
-            navigate(0)
+        .then(() => {
+        setTodos(prev => prev.filter((el) => el.id !== id))       
         })
         
         
     }
 
     const successTodo = () => {
-        let copy = [...todos]
+        /*let copy = [...todos]
         for (let el of copy) {
             if (el.id === id) {
                 el.isCompleted =!el.isCompleted    
             }
-        }
-        setTodos(copy)
+        }*/
+        setTodos(prev => prev.map((el) => el.id === id ? ({...el, isCompleted: !el.isCompleted}): el))
 
     }
     const modifyTodo = () => {
         setIsModify(!isModify)
     }
+
     return (
         <ToDodivBlock>
             {!isCompleted ? <ToDoliBlock>
                 <ToDotodoBlock>{isModify ? <ToDoModyfy setTodos={setIsModify} todos={todos} todo={todo} id={id} isCompleted={isCompleted} setIsModify={setIsModify} /> : <a href={googleulr} target="_blank">{todo}</a>}</ToDotodoBlock>
                 <div className="Btnbox">
-                    <ToDoCheckBox type="checkbox" onClick={successTodo} />
+                    <ToDoCheckBox type="checkbox" checked={isCompleted} onClick={successTodo} />
                     <ToDoDeleteBtn data-testid="delete-button" onClick={deleteTodo}>🗑️</ToDoDeleteBtn>
                     <ToDoSuccsessBtn data-testid="modify-button" onClick={modifyTodo}>✏️</ToDoSuccsessBtn>
                 </div>
-            </ToDoliBlock> :
+            </ToDoliBlock> 
+            :
                 <ToDoSuccessBlock>
                     <ToDoSuccessspan>{todo}</ToDoSuccessspan>
                     <div className="Btnbox">
-                        <ToDoCheckBox type="checkbox" onClick={successTodo} />
+                        <ToDoCheckBox type="checkbox" checked={isCompleted} onClick={successTodo} />
                     </div>
                 </ToDoSuccessBlock>}
         </ToDodivBlock>
