@@ -68,8 +68,6 @@ export default function Signup({ setIsLogin, setSingup }) {
   const signupHandler = () => {
     /*위에서 유효성 검사를 거치고 넘어오겠지만, 회원가입은 방어적으로 로직을 짜는게 좋다. */
     if (isPassword && isEmail) {
-      setSingup(false)
-      setIsLogin(true)
       return fetch
         ("https://www.pre-onboarding-selection-task.shop/auth/signup", {
           method: "POST",
@@ -81,8 +79,10 @@ export default function Signup({ setIsLogin, setSingup }) {
         .then((res) => {
           if (res.status === 201) {
             alert("회원가입에 성공하셨습니다.")
+            setSingup(false)
+            setIsLogin(true)
           } else {
-            alert("회원가입에 실패하셨습니다..")
+            alert("동일한 이메일이 이미 존재합니다.")
           }
         })
     }
