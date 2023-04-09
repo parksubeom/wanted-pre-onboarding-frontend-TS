@@ -12,11 +12,12 @@
 
 ### 🛠️ 사용 라이브러리 및 기술
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React
+- JS(jsx)
+- css
+- styled components
+- react-router-dom
+- ph-pages
 
 ### ⚙️ 프로젝트 실행 방법
 
@@ -26,4 +27,6 @@ npm install & npm start
 ```
 
 ### ⚠️ 커밋 컨벤션
+- feat : 새로운 기능추가
+- fix : 기존 기능 수정
 
