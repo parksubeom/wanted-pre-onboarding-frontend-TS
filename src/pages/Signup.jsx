@@ -21,7 +21,7 @@ const Disablebtn = styled.button`
   }
 `
 
-export default function Signup({setIsLogin, setSingup}) {
+export default function Signup({ setIsLogin, setSingup }) {
   /**이메일, 패스워드 확인 */
   const [isEmail, setIsEmail] = useState(false)
   const [isPassword, setIsPassword] = useState(false)
@@ -29,19 +29,19 @@ export default function Signup({setIsLogin, setSingup}) {
   /**이메일, 패스워드 에러메시지 */
   const [emailMessage, setEmailMessage] = useState('');
   const [passwordMessage, setPasswordMessage] = useState('');
-  
+
   /**입력값 저장*/
   const [loginInfo, setLoginInfo] = useState({
     password: '',
     email: '',
-  
+
   });
   const handleEmailValue = (key) => (e) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
-    if(!e.target.value.includes("@") && e.target.value.length > 0){
+    if (!e.target.value.includes("@") && e.target.value.length > 0) {
       setEmailMessage('이메일 형식에는 @를 포함해주세요.')
       setIsEmail(false)
-    }else if(e.target.value.includes("@") && e.target.value.length > 0){
+    } else if (e.target.value.includes("@")) {
       setEmailMessage('')
       setIsEmail(true)
     }
@@ -49,63 +49,70 @@ export default function Signup({setIsLogin, setSingup}) {
 
   const handlePasswordValue = (key) => (e) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
-    if(e.target.value.length < 8  && e.target.value.length > 0){
+    if (e.target.value.length < 8 && e.target.value.length > 0) {
       setPasswordMessage('비밀번호는 8자리 이상 입력해주세요.')
       setIsPassword(false)
-    } else if(e.target.value.length > 8) {
+    } else if (e.target.value.length > 8) {
       setPasswordMessage('')
       setIsPassword(true)
     }
   };
-  
+
   const signupHandler = () => {
+    if (!isEmail) {
+      return alert("E-mail을 올바르게 입력바랍니다.")
+    }
+    if (!isPassword) {
+      return alert("Password를 올바르게 입력바랍니다.")
+    }
+    if (isPassword && isEmail) {
       setSingup(false)
       setIsLogin(true)
       return fetch
-     ("https://www.pre-onboarding-selection-task.shop/auth/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(loginInfo)
-    })
-      .then((res) => {
-      if(res.status === 201){
-        alert("회원가입에 성공하셨습니다.")
-      }else{
-        alert("회원가입에 실패하셨습니다..")
-      }
-      })
-    
+        ("https://www.pre-onboarding-selection-task.shop/auth/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginInfo)
+        })
+        .then((res) => {
+          if (res.status === 201) {
+            alert("회원가입에 성공하셨습니다.")
+          } else {
+            alert("회원가입에 실패하셨습니다..")
+          }
+        })
     }
-    
+  }
+
   return (
     <div className='container'>
       <div className='left-box'>
-      <span>
+        <span>
           FRONTEND
           <p>INTERNSHIP</p>
           SIGN UP
         </span>
       </div>
       <div className='right-box'>
-      <img src='https://live.staticflickr.com/65535/52249182884_80a9c34075_o.png'></img>
-      <h2>SIGN UP</h2>
+        <img src='https://live.staticflickr.com/65535/52249182884_80a9c34075_o.png'></img>
+        <h2>SIGN UP</h2>
         <form onSubmit={(e) => e.preventDefault()}>
           <div className='input-field'>
 
-            
+
             {/* 이메일 인풋창 */}
-          <span>E-mail</span>
-          <input
+            <span>E-mail</span>
+            <input
               type='email'
               data-testid='email-input'
               onChange={handleEmailValue('email')}
             />
-              {emailMessage ? (
-            <div id='alert-message' data-testid='alert-message'>
-              {emailMessage}
-            </div>) : ('')}
+            {emailMessage ? (
+              <div id='alert-message' data-testid='alert-message'>
+                {emailMessage}
+              </div>) : ('')}
             {/* 패스워드 인풋창 */}
             <span>Password</span>
             <input
@@ -114,18 +121,18 @@ export default function Signup({setIsLogin, setSingup}) {
               onChange={handlePasswordValue('password')}
             />
             {passwordMessage ? (
-            <div id='alert-message' data-testid='alert-message'>
-              {passwordMessage}
-            </div>) : ('')}
+              <div id='alert-message' data-testid='alert-message'>
+                {passwordMessage}
+              </div>) : ('')}
           </div>
 
-          {!isEmail || !isPassword ? 
-          <Disablebtn disabled={!(isEmail && isPassword)}>SIGNUP</Disablebtn> 
-          : 
-          <button data-testid="signup-button" type='submit'onClick={signupHandler} disabled={!(isEmail && isPassword)}>
-            SIGNUP
-          </button>}
-          
+          {!isEmail || !isPassword ?
+            <Disablebtn disabled={!(isEmail && isPassword)}>SIGNUP</Disablebtn>
+            :
+            <button data-testid="signup-button" type='submit' onClick={signupHandler} disabled={!(isEmail && isPassword)}>
+              SIGNUP
+            </button>}
+
         </form>
       </div>
     </div>
