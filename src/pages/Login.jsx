@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login({ setToken }) {
+
   const navigate = useNavigate()
-  const [loginInfo, setLoginInfo] = useState({
-    userId: '',
-    password: '',
-  });
+  const [loginInfo, setLoginInfo] = useState({userId: '',password: '',});
   const [checkedKeepLogin, setCheckedKeepLogin] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -33,16 +31,12 @@ export default function Login({ setToken }) {
       })
       .then((res) => res.json())
       .then((res) => {
-        if (res.access_token !== undefined) {
+        if (res.access_token !== undefined && checkedKeepLogin) {
         window.localStorage.setItem('access_token', res.access_token)
         setToken(localStorage.getItem("access_token"))
         }else if(res.statusCode === 404){
           setErrorMessage("로그인에 실패했습니다.")
         }
-        /**일단 가이드라인 따라가자 */
-        /*if(checkedKeepLogin){
-          window.localStorage.setItem('access_token', res.access_token)
-        }*/
       })
     navigate('/todo')
   };
@@ -76,7 +70,6 @@ export default function Login({ setToken }) {
               data-testid='password-input'
               onChange={handleInputValue('password')}
             />
-            {/**일단 가이드라인을 준수하기위해 로직은 넣지않았습니다.*/}
             <label className='checkbox-container'>
               <input type='checkbox' onChange={() => setCheckedKeepLogin(!checkedKeepLogin)} />
               {' 로그인 상태 유지하기'}

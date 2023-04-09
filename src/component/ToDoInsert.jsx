@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, memo } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const ToDoInputtBlock = styled.input`
@@ -28,11 +28,13 @@ function ToDoInsert({ todos, setTodos }) {
     const [inputvalue, setInputvalue] = useState('')
     const token = localStorage.getItem("access_token");
 
+    /** 인풋창에 적희는 value값을 inputvalue상태에 담아주는 함수*/
     const insertChange = (e) => {
         setInputvalue
             (e.target.value);
     };
 
+    /**투두리스트를 추가해주는 함수. */
     const addTodo = (e) => {
         e.preventDefault();
         console.log("실행")
@@ -72,13 +74,8 @@ function ToDoInsert({ todos, setTodos }) {
                         onChange={insertChange} >
                     </ToDoInputtBlock>
                     <ToDoBtn data-testid="new-todo-add-button" type="submit">추가</ToDoBtn>
-
-
                 </ToDoInputbox>
-
-
             </form>
-
         </div>
     );
 }

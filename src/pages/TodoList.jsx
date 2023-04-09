@@ -1,13 +1,22 @@
 import { React, useState, useEffect } from 'react';
 import ToDoMain from '../component/ToDoMain';
 import ToDoUpdate from '../component/ToDoUpdate';
-import './TodoList.css'
+import styled from 'styled-components';
+
+const ToDocontainer = styled.div`
+  text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    
+`
 
 
 export default function TodoList({ token }) {
-  const [modal, setModal] = useState(false)
   const [updateModal, setUpdateModal] = useState(false)
-  const [todoId, setTodoId] = useState(0)
   const [todos, setTodos] = useState([{
     todo: "선별과제 최선을 다하기",
     userId: 1,
@@ -38,11 +47,11 @@ export default function TodoList({ token }) {
 
 
   return (
-    <div className="ToDo-container">
-      <ToDoMain todos={todos} setTodos={setTodos} modal={modal} setModal={setModal} setUpdateModal={setUpdateModal} updateModal={updateModal} setTodoId={setTodoId} />
-      {updateModal ? <ToDoUpdate todos={todos} setUpdateModal={setUpdateModal} setTodos={setTodos} todoId={todoId} /> : null}
+    <ToDocontainer>
+      <ToDoMain todos={todos} setTodos={setTodos} setUpdateModal={setUpdateModal}/>
+      {updateModal ? <ToDoUpdate todos={todos} setUpdateModal={setUpdateModal} setTodos={setTodos}  /> : null}
 
 
-    </div>
+    </ToDocontainer>
   )
 }

@@ -54,7 +54,7 @@ const ToDoHeaderBlock = styled.header`
 let today = `${new Date().getFullYear()}년 ${new Date().getMonth() + 1}월 ${new Date().getDate()}일 `;
 let week = new Array('일', '월', '화', '수', '목', '금', '토')[new Date().getDay()]
 
-function ToDoMain({ todos, setTodos, modal, setModal, setUpdateModal, updateModal,  setTodoId}) {
+function ToDoMain({ todos, setTodos, setUpdateModal}) {
   return (
     <ToDoMainBlock>
       <ToDoHeaderBlock>
@@ -62,7 +62,7 @@ function ToDoMain({ todos, setTodos, modal, setModal, setUpdateModal, updateModa
         <h3>{week}요일</h3>
         <h4>TO-DO-LIST {todos.length}개</h4>
       </ToDoHeaderBlock>
-      <ToDoList todos={todos} setTodos={setTodos} setModal={setModal} modal={modal} setUpdateModal={setUpdateModal} updateModal={updateModal}  setTodoId={setTodoId}/>
+      <ToDoList todos={todos} setTodos={setTodos}  setUpdateModal={setUpdateModal}/>
     </ToDoMainBlock>
   );
 }

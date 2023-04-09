@@ -66,7 +66,8 @@ export default function Signup() {
       setIsPassword(true)
     }
   };
-
+  
+  /**회원가입 요청 함수*/
   const signupHandler = () => {
     /*위에서 유효성 검사를 거치고 넘어오겠지만, 회원가입은 방어적으로 로직을 짜는게 좋다. */
     if (isPassword && isEmail) {

@@ -11,7 +11,7 @@ const ToDoListul = styled.ul`
     justify-content: center;
 `
 
-
+/**메인에서 받아 온 todos를 맵으로 뿌려주는 컴포넌트 */
 function ToDoList ({todos,setTodos,setUpdateModal}) {
     return(
         <ToDoListul>

@@ -33,7 +33,7 @@ const ToDoInputbox = styled.div`
     border-radius: 30px;
 `
 
-function ToDoModyfy({ todos, setTodos, todo, id, isCompleted, setIsModify }) {
+function ToDoModyfy({ todos,todo, id, isCompleted, setIsModify }) {
     const [inputvalue, setInputvalue] = useState(todo)
     const token = localStorage.getItem("access_token");
 
