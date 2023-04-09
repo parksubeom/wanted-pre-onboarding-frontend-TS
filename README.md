@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# 🚀원티드 프론트엔드 인턴쉽 선발과제
+본 프로젝트는 원티드 프리온보딩 프론트엔드 과정 선발 과제 수행을 위해 진행되었습니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
