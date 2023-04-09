@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Routes, Route, Navigate,HashRouter } from 'react-router-dom';
+import { Routes, Route, Navigate,HashRouter } from 'react-router-dom';
 import Login from './pages/Login';
 import TodoList from './pages/TodoList';
 import Signup from './pages/Signup';
@@ -16,7 +16,7 @@ function App() {
   const [userInfo, setUserInfo] = useState(null);
   //const token = localStorage.getItem("access_token");
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter>
       <div className='main'>
         <Routes>
           {/* localhost:3000 으로 접속한 로그인이 되어있다면(토큰이있다면) /todo로, 토큰이 없다면 /sign 으로 보낸다.  */}
@@ -31,11 +31,11 @@ function App() {
            {/* localhost:3000/signup 으로 접속한 경우 토큰이 있다면 /todo로, 없다면 그대로 localhost:3000/signup로 이동한다.  */}
            <Route path="/signup" element ={token? <Navigate to="/todo"/>:<Signup/>}/>
            {/* localhost:3000/todo 으로 접속한 경우 토큰이 없다면 /signin으로, 있다면 그대로 localhost:3000/todo로 이동한다.  */}
-           <Route path="/todo" element ={!token ?  <Navigate to="/signin"/>:<TodoList userInfo={userInfo} setUserInfo={setUserInfo} token={token} />}/> :
+           <Route path="/todo" element ={token === null ?  <Navigate to="/signin"/>:<TodoList userInfo={userInfo} setUserInfo={setUserInfo} token={token} />}/> :
 
         </Routes>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
