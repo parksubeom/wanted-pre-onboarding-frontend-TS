@@ -44,7 +44,7 @@ export default function Login({ setToken }) {
           window.localStorage.setItem('access_token', res.access_token)
         }*/
       })
-    return navigate('/todo')
+    navigate('/todo')
   };
   /**회원가입 이동 함수 */
   const signupBtnHandler = () => {
@@ -64,7 +64,7 @@ export default function Login({ setToken }) {
       <div className='right-box'>
         <img src='https://live.staticflickr.com/65535/52249182884_80a9c34075_o.png'></img>
         <h2>AUTH</h2>
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={loginRequestHandler}>
           <div className='input-field'>
             <span>E-mail</span>
             <input type='text'
@@ -89,14 +89,13 @@ export default function Login({ setToken }) {
           ) : (
             ''
           )}
-          <button type='submit' data-testid="signin-button" onClick={loginRequestHandler}>
+          <button type='submit' data-testid="signin-button">
             LOGIN
-          </button>
-          <button type='button' data-testid="signup-button" onClick={signupBtnHandler} >
+          </button>     
+        </form>
+        <button className='signupBtn' type='button' data-testid="signup-button" onClick={signupBtnHandler} >
             SIGNUP
           </button>
-         
-        </form>
       </div>
     </div>
   );

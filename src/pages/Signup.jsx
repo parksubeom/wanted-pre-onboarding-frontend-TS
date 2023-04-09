@@ -130,13 +130,13 @@ export default function Signup() {
           </div>
           {/*이메일과 비밀번호가 유효성 검사를 통과하지 못한다면 button에 disabled 속성을 부여*/}    
           {!isEmail || !isPassword ?
-            <Disablebtn disabled={!(isEmail && isPassword)}>SIGNUP</Disablebtn>
+            <Disablebtn disabled={!(isEmail && isPassword)}>가입하기</Disablebtn>
             :
             <button 
             data-testid="signup-button"
             type='submit' 
             onClick={signupHandler}>
-              SIGNUP
+              가입하기
             </button>}
 
         </form>
