@@ -66,7 +66,7 @@ export default function Signup() {
       setIsPassword(true)
     }
   };
-  
+
   /**회원가입 요청 함수*/
   const signupHandler = () => {
     /*위에서 유효성 검사를 거치고 넘어오겠지만, 회원가입은 방어적으로 로직을 짜는게 좋다. */
@@ -113,6 +113,7 @@ export default function Signup() {
               data-testid='email-input'
               onChange={handleEmailValue('email')}
             />
+            {/* 이메일 에러메시지 */}
             {emailMessage ? (
               <div id='alert-message' data-testid='alert-message'>
                 {emailMessage}
@@ -124,6 +125,7 @@ export default function Signup() {
               data-testid='password-input'
               onChange={handlePasswordValue('password')}
             />
+             {/* 패스워드 에러메시지 */}
             {passwordMessage ? (
               <div id='alert-message' data-testid='alert-message'>
                 {passwordMessage}

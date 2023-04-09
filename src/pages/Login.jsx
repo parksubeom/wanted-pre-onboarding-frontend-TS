@@ -59,10 +59,13 @@ export default function Login({ setToken}) {
         <h2>AUTH</h2>
         <form onSubmit={loginRequestHandler}>
           <div className='input-field'>
+            {/* 이메일 인풋창 */}
             <span>E-mail</span>
             <input type='text'
               data-testid='email-input'
               onChange={handleInputValue('email')} />
+
+               {/* 패스워드 인풋창 */}
             <span>Password</span>
             <input
               type='password'
@@ -70,6 +73,7 @@ export default function Login({ setToken}) {
               onChange={handleInputValue('password')}
             />
           </div>
+          {/* 에러메시지 */}
           {errorMessage ? (
             <div id='alert-message' data-testid='alert-message'>
               {errorMessage}
