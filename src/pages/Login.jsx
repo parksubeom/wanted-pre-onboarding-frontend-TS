@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function Login({ setToken }) {
+export default function Login({ setToken}) {
 
   const navigate = useNavigate()
   const [loginInfo, setLoginInfo] = useState({userId: '',password: '',});
@@ -31,10 +31,10 @@ export default function Login({ setToken }) {
       })
       .then((res) => res.json())
       .then((res) => {
-        if (res.access_token !== undefined && checkedKeepLogin) {
+        if (res.access_token !== undefined) {
         window.localStorage.setItem('access_token', res.access_token)
         setToken(localStorage.getItem("access_token"))
-        }else if(res.statusCode === 404){
+        } else if(res.statusCode === 404){
           setErrorMessage("로그인에 실패했습니다.")
         }
       })

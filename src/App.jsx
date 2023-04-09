@@ -27,7 +27,7 @@ function App() {
             }
           />
            {/* localhost:3000/signin 으로 접속한 경우 토큰이 있다면 /todo로, 없다면 그대로 localhost:3000/signin로 이동한다.  */}
-           <Route path="/signin" element ={token? <Navigate to="/todo"/>:<Login setUserInfo={setUserInfo} setToken={setToken} />}/>
+           <Route path="/signin" element ={token? <Navigate to="/todo"/>:<Login setUserInfo={setUserInfo} setToken={setToken}/>}/>
            {/* localhost:3000/signup 으로 접속한 경우 토큰이 있다면 /todo로, 없다면 그대로 localhost:3000/signup로 이동한다.  */}
            <Route path="/signup" element ={token? <Navigate to="/todo"/>:<Signup/>}/>
            {/* localhost:3000/todo 으로 접속한 경우 토큰이 없다면 /signin으로, 있다면 그대로 localhost:3000/todo로 이동한다.  */}

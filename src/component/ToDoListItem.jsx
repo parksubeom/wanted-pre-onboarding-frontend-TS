@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import ToDoModyfy from './ToDoModify';
 
 const ToDodivBlock = styled.div`
@@ -24,11 +24,12 @@ const ToDoliBlock = styled.li`
     color : #f4e8ff
   }
   .Btnbox {
+    margin-top: 5px;
     display: flex;
     flex-direction: column;
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
   }
 `;
 
@@ -49,9 +50,17 @@ const ToDoSuccessBlock = styled.li`
     flex-direction: column;
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
   }
 `;
+
+const Checkbox = styled.div`
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+`
 
 const ToDotodoBlock = styled.span`
 text-align: right;
@@ -81,13 +90,15 @@ text-decoration: none;
 `;
 
 const ToDoDeleteBtn = styled.span`
+
 width: 30px;
 margin-left:3px;
 cursor: pointer;
-font-size:12px;
+font-size:17px;
 `;
 
 const ToDoCheckBox = styled.input`
+margin-top : 15px;
 width: 15px;
 height: 15px;
 margin-left:10px;
@@ -95,7 +106,7 @@ cursor: pointer;
 font-size:12px;
 `
 
-function ToDoListItem({ list, todos, setTodos}) {
+function ToDoListItem({ list, todos, setTodos }) {
     const [isModify, setIsModify] = useState(false)
     const { id, todo, isCompleted } = list;
     const googleulr = `https://www.google.com/search?q=${todo}&sxsrf=AJOqlzWmKMltXpsKhW5LXn5NeZhVRSGEUQ%3A1678406201764&source=hp&ei=OXIKZKm-LIP5hwPdlo2oAw&iflsig=AK50M_UAAAAAZAqASUnEuWXCverjO0fsiwQN9qHNa017&ved=0ahUKEwjpvsWrhtD9AhWD_GEKHV1LAzUQ4dUDCAo&uact=5&oq=%EB%A6%AC%EB%8D%95%EC%8A%A4&gs_lcp=Cgdnd3Mtd2l6EAMyBAgjECcyBAgjECcyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDoHCCMQ6gIQJzoRCC4QgAQQsQMQgwEQxwEQ0QM6CwgAEIAEELEDEIMBOgsILhCABBCxAxDUAjoKCC4QgAQQ1AIQCjoECAAQQzoECC4QQzoKCC4QxwEQ0QMQQzoQCAAQgAQQFBCHAhCxAxCDAToKCAAQgAQQFBCHAjoOCC4QgAQQsQMQgwEQ1AI6CwguEIAEELEDEIMBULICWKoUYOgUaApwAHgCgAF2iAHZCpIBBDEuMTKYAQCgAQGwAQo&sclient=gws-wiz`
@@ -103,17 +114,17 @@ function ToDoListItem({ list, todos, setTodos}) {
 
     /** 투두 삭제 요청 함수 */
     const deleteTodo = () => {
-       fetch(`https://www.pre-onboarding-selection-task.shop/todos/${id}`, {
+        fetch(`https://www.pre-onboarding-selection-task.shop/todos/${id}`, {
             method: "DELETE",
-            headers: { "Authorization": `Bearer ${token}`}
+            headers: { "Authorization": `Bearer ${token}` }
         })
-        .then(() => {
-        setTodos(prev => prev.filter((el) => el.id !== id))       
-        }) 
+            .then(() => {
+                setTodos(prev => prev.filter((el) => el.id !== id))
+            })
     }
     /** 투두의 성공여부를 변경해주는 함수 */
     const successTodo = () => {
-        setTodos(prev => prev.map((el) => el.id === id ? ({...el, isCompleted: !el.isCompleted}): el))
+        setTodos(prev => prev.map((el) => el.id === id ? ({ ...el, isCompleted: !el.isCompleted }) : el))
     }
     /** 투두 수정창이 나오게 해주는 함수 */
     const modifyTodo = () => {
@@ -124,18 +135,20 @@ function ToDoListItem({ list, todos, setTodos}) {
         <ToDodivBlock>
             {!isCompleted ? <ToDoliBlock>
                 <ToDotodoBlock>{isModify ? <ToDoModyfy setTodos={setIsModify} todos={todos} todo={todo} id={id} isCompleted={isCompleted} setIsModify={setIsModify} /> : <a href={googleulr} target="_blank">{todo}</a>}</ToDotodoBlock>
-                <div className="Btnbox">
+                <Checkbox>
                     <ToDoCheckBox type="checkbox" checked={isCompleted} onChange={successTodo} />
+                </Checkbox>
+                <div className="Btnbox">
                     <ToDoDeleteBtn data-testid="delete-button" onClick={deleteTodo}>🗑️</ToDoDeleteBtn>
                     <ToDoSuccsessBtn data-testid="modify-button" onClick={modifyTodo}>✏️</ToDoSuccsessBtn>
                 </div>
-            </ToDoliBlock> 
-            :
+            </ToDoliBlock>
+                :
                 <ToDoSuccessBlock>
                     <ToDoSuccessspan>{todo}</ToDoSuccessspan>
-                    <div className="Btnbox">
+                    <Checkbox>
                         <ToDoCheckBox type="checkbox" checked={isCompleted} onChange={successTodo} />
-                    </div>
+                    </Checkbox>
                 </ToDoSuccessBlock>}
         </ToDodivBlock>
     );
