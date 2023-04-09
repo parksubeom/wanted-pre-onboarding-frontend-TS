@@ -27,7 +27,7 @@ export default function TodoList({ token }) {
     })
       .then((res) => res.json())
       .then((res) => {
-        setTodos(res)
+        setTodos([...res])
       })
   }
 

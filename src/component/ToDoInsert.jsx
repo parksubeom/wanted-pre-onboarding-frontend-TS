@@ -39,7 +39,7 @@ function ToDoInsert({ todos, setTodos }) {
         e.preventDefault();
         console.log("실행")
         if (inputvalue.length > 0) {
-            let newTodo = { id: todos[todos.length - 1].id + 1, todo: inputvalue, isCompleted: false, userId: todos[todos.length - 1].id + 1 }
+            let newTodo = { id: todos[todos.length - 1]+1, todo: inputvalue, isCompleted: false, userId: todos[todos.length - 1]+1 }
             setInputvalue('')
             return fetch
                 ("https://www.pre-onboarding-selection-task.shop/todos", {
