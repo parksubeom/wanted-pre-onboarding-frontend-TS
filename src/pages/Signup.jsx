@@ -38,10 +38,10 @@ export default function Signup({setIsLogin, setSingup}) {
   });
   const handleEmailValue = (key) => (e) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
-    if(!e.target.value.includes("@")){
+    if(!e.target.value.includes("@") && e.target.value.length > 0){
       setEmailMessage('이메일 형식에는 @를 포함해주세요.')
       setIsEmail(false)
-    } else {
+    }else if(e.target.value.includes("@") && e.target.value.length > 0){
       setEmailMessage('')
       setIsEmail(true)
     }
@@ -49,10 +49,10 @@ export default function Signup({setIsLogin, setSingup}) {
 
   const handlePasswordValue = (key) => (e) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value });
-    if(e.target.value.length < 8){
+    if(e.target.value.length < 8  && e.target.value.length > 0){
       setPasswordMessage('비밀번호는 8자리 이상 입력해주세요.')
       setIsPassword(false)
-    } else {
+    } else if(e.target.value.length > 8) {
       setPasswordMessage('')
       setIsPassword(true)
     }
