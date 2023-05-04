@@ -1,12 +1,8 @@
-import { UserInfo } from "os";
+import { infoType } from "../types/Todo";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Login({ setToken }) {
-  interface infoType {
-    email: string;
-    password: string;
-  }
   const navigate = useNavigate();
   const [loginInfo, setLoginInfo] = useState<infoType>({
     email: "",

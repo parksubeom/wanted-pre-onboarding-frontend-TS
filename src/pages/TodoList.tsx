@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ToDoMain from "../component/ToDoMain";
-import ToDoUpdate from "../component/ToDoUpdate";
 import styled from "styled-components";
+import { TodoType } from "../types/Todo";
 
 const ToDocontainer = styled.div`
   text-align: center;
@@ -12,14 +12,8 @@ const ToDocontainer = styled.div`
   background-position: center;
   background-size: cover;
 `;
-export type TodoType = {
-  id: string;
-  todo: string;
-  isComplete: boolean;
-  userId: number;
-};
+
 export default function TodoList({ token }): React.ReactElement {
-  const [updateModal, setUpdateModal] = useState(false);
   const [todos, setTodos] = useState<TodoType[]>([]);
   const getFunction = () => {
     fetch("https://www.pre-onboarding-selection-task.shop/todos", {
@@ -40,18 +34,7 @@ export default function TodoList({ token }): React.ReactElement {
 
   return (
     <ToDocontainer>
-      <ToDoMain
-        todos={todos}
-        setTodos={setTodos}
-        setUpdateModal={setUpdateModal}
-      />
-      {updateModal ? (
-        <ToDoUpdate
-          todos={todos}
-          setUpdateModal={setUpdateModal}
-          setTodos={setTodos}
-        />
-      ) : null}
+      <ToDoMain todos={todos} setTodos={setTodos} />
     </ToDocontainer>
   );
 }

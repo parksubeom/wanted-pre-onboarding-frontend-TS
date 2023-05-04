@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-import ToDoList from './ToDoList';
-
+import React from "react";
+import styled from "styled-components";
+import ToDoList from "./ToDoList";
+import { TodoType } from "../types/Todo";
 
 const ToDoMainBlock = styled.div`
   width: 500px;
@@ -12,12 +12,12 @@ const ToDoMainBlock = styled.div`
   display: flex;
   flex-direction: column;
   z-index: 2;
-  background: rgba( 70, 70, 250, 0.25 );
-  box-shadow: 0 8px 32px 0 rgba( 248, 244, 204, 0.57 );
-  backdrop-filter: blur( 3.5px );
-  -webkit-backdrop-filter: blur( 3.5px );
+  background: rgba(70, 70, 250, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(248, 244, 204, 0.57);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px);
   border-radius: 10px;
-  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  border: 1px solid rgba(255, 255, 255, 0.18);
 `;
 
 const ToDoHeaderBlock = styled.header`
@@ -35,8 +35,7 @@ const ToDoHeaderBlock = styled.header`
     color: #19191c;
     text-align: left;
     margin-left: 10px;
-    margin-top:20px;
-  
+    margin-top: 20px;
   }
   h3 {
     color: #dddde4;
@@ -51,10 +50,17 @@ const ToDoHeaderBlock = styled.header`
   }
 `;
 
-let today = `${new Date().getFullYear()}년 ${new Date().getMonth() + 1}월 ${new Date().getDate()}일 `;
-let week = new Array('일', '월', '화', '수', '목', '금', '토')[new Date().getDay()]
-
-function ToDoMain({ todos, setTodos, setUpdateModal}) {
+let today = `${new Date().getFullYear()}년 ${
+  new Date().getMonth() + 1
+}월 ${new Date().getDate()}일 `;
+let week = new Array("일", "월", "화", "수", "목", "금", "토")[
+  new Date().getDay()
+];
+interface TodoProps {
+  todos: TodoType[];
+  setTodos: React.Dispatch<React.SetStateAction<TodoType[]>>;
+}
+function ToDoMain({ todos, setTodos }: TodoProps) {
   return (
     <ToDoMainBlock>
       <ToDoHeaderBlock>
@@ -62,9 +68,9 @@ function ToDoMain({ todos, setTodos, setUpdateModal}) {
         <h3>{week}요일</h3>
         <h4>TO-DO-LIST {todos.length}개</h4>
       </ToDoHeaderBlock>
-      <ToDoList todos={todos} setTodos={setTodos}  setUpdateModal={setUpdateModal}/>
+      <ToDoList todos={todos} setTodos={setTodos} />
     </ToDoMainBlock>
   );
 }
 
-export default ToDoMain
+export default ToDoMain;
